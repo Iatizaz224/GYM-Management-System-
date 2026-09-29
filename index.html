@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="NEXT Gym">
+<meta name="theme-color" content="#56634f">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>NEXT Gym Manager</title>
+<link rel="stylesheet" href="/style.css?v=681">
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">N</div><div><b>NEXT Gym Manager</b><span class="version">iPhone build 6.8</span></div></div><button class="btn" onclick="showPage('settings')">⚙︎</button></header>
+<div id="errorBanner"></div>
+<main>
+<section id="home" class="page on"><div class="hero"><small id="today"></small><h2>Welcome 👋</h2><p>Schedule • Payments • Clients • Profit</p></div><div class="stats"><div class="stat"><span>Active clients</span><b id="statActive">0</b></div><div class="stat"><span>Paid this month</span><b id="statPaid">0</b></div><div class="stat"><span>Unpaid this month</span><b id="statUnpaid">0</b></div><div class="stat"><span>Waiting list</span><b id="statWaiting">0</b></div><div class="stat wide"><span>Revenue this month</span><b><span id="statRevenue">0.000</span> OMR</b></div></div><div class="sectionbar"><h3>Needs attention</h3><button class="btn" onclick="showPage('report')">Profit</button></div><div id="attention"></div></section>
+<section id="schedule" class="page"><div class="sectionbar"><h3>Schedule / الجدول</h3></div><div class="toggle"><button id="listViewBtn" class="on" onclick="scheduleMode='list';renderSchedule()">List View</button><button id="tableViewBtn" onclick="scheduleMode='table';renderSchedule()">Table View</button></div><div id="dayChips" class="chips"></div><div id="scheduleBody"></div></section>
+<section id="clients" class="page"><div class="sectionbar"><h3>Clients / المشتركات</h3><button class="btn" onclick="openClientForm()">+ Add</button></div><input id="clientSearch" class="search" placeholder="Search name or phone" oninput="renderClients()"><div id="bulkQueuePanel"></div><div id="bulkToolbar" class="card bulkbar"><div class="row"><b><span id="bulkSelectedCount">0</span> selected</b><button class="whatsapp" onclick="openBulkWhatsApp()">Bulk WhatsApp</button></div><div class="actions"><button class="secondary" onclick="selectAllVisibleClients()">Select All</button><button class="secondary" onclick="clearBulkSelection()">Clear</button><button class="secondary" onclick="showPage('settings');setTimeout(function(){document.getElementById('waSettings').scrollIntoView({behavior:'smooth'})},50)">Message Settings</button></div></div><div class="chips"><button id="activeClientsBtn" class="on" onclick="clientView='active';renderClients()">Active</button><button id="archivedClientsBtn" onclick="clientView='archived';renderClients()">Archived</button></div><div id="clientList"></div></section>
+<section id="payments" class="page"><div class="sectionbar"><h3>Payments / الدفعات</h3></div><input id="paymentMonth" type="month" onchange="selectedPaymentMonth=this.value;renderPayments()"><div class="chips"><button data-payfilter="all" class="on">All</button><button data-payfilter="unpaid">Unpaid</button><button data-payfilter="paid">Paid</button></div><div id="paymentList"></div></section>
+<section id="waiting" class="page"><div class="sectionbar"><h3>Waiting List / قائمة الانتظار</h3><button class="btn" onclick="openWaitingForm()">+ Add</button></div><div id="waitingList"></div></section>
+<section id="report" class="page"><div class="sectionbar"><h3>Monthly Profit / الربح الشهري</h3><button class="btn" onclick="openExpenseForm()">+ Expense</button></div><input id="reportMonth" type="month" onchange="selectedReportMonth=this.value;renderReport()"><div id="reportStats" class="reportgrid"></div><div class="card"><b>Payments Received</b><div id="reportPayments"></div></div><div class="card"><b>Expenses</b><div id="reportExpenses"></div></div></section>
+<section id="settings" class="page"><div class="sectionbar"><h3>Settings / الإعدادات</h3></div><div id="waSettings" class="card"><b>WhatsApp Message Settings</b><p class="help">You can edit both templates at any time. Available variables: <b>{name}</b>, <b>{start}</b>, <b>{end}</b>, <b>{fee}</b>.</p><div class="templatebox"><b>New Membership / اشتراك جديد</b><textarea id="newTemplate"></textarea></div><div class="templatebox"><b>Membership Renewal / تجديد الاشتراك</b><textarea id="renewTemplate"></textarea></div><button class="primary full" onclick="saveTemplates()">Save WhatsApp Templates</button></div><div class="card"><b>Backup</b><p class="help">Data is stored on this iPhone/browser. Export a backup regularly.</p><div class="actions"><button class="secondary" onclick="exportBackup()">Export Backup</button><label class="btn" style="text-align:center">Import<input hidden type="file" accept="application/json" onchange="importBackup(this)"></label></div></div></section>
+</main>
+</div>
+<nav class="nav"><button class="on" data-page="home" onclick="showPage('home')">⌂<small>Home</small></button><button data-page="schedule" onclick="showPage('schedule')">▦<small>Schedule</small></button><button data-page="clients" onclick="showPage('clients')">♙<small>Clients</small></button><button data-page="payments" onclick="showPage('payments')">◉<small>Payments</small></button><button data-page="waiting" onclick="showPage('waiting')">⋯<small>Waiting</small></button></nav>
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet"><div class="handle"></div><div id="modalContent"></div></div></div>
+<script src="/app1.js?v=681"></script><script src="/app2.js?v=681"></script><script src="/app3.js?v=681"></script><script src="/app4.js?v=681"></script><script src="/app5.js?v=681"></script><script src="/app6.js?v=681"></script>
+</body>
+</html>
